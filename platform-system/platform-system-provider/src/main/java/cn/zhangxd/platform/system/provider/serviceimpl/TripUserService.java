@@ -107,6 +107,7 @@ public class TripUserService extends CrudService<TripUserMapper, TripUser> imple
         //         }
         //     }
         // }.start();
+        //分布式锁
         try {
             DistributedLockUtil.lock(mobile);
             TripUser oldUser = getByMobile(mobile);
