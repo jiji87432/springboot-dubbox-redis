@@ -3,6 +3,7 @@ package cn.zhangxd.platform.mobile.client.controller;
 import cn.zhangxd.platform.common.upload.util.FileIndex;
 import cn.zhangxd.platform.common.upload.util.FileManager;
 import cn.zhangxd.platform.common.web.util.WebUtils;
+import cn.zhangxd.platform.mobile.client.common.annotation.RequestLimit;
 import cn.zhangxd.platform.mobile.client.common.controller.BaseController;
 import cn.zhangxd.platform.mobile.client.constant.Message;
 import cn.zhangxd.platform.mobile.client.constant.ReturnCode;
@@ -20,6 +21,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Pattern;
 import java.util.Collections;
 import java.util.HashMap;
@@ -67,9 +69,11 @@ public class UserController extends BaseController {
      * @return the map
      * @throws InvalidCaptchaException the invalid captcha exception
      */
+    @RequestLimit(count = 10)
     @PostMapping(value = "", produces = "application/json; charset=UTF-8")
     @ApiOperation(value = "注册用户")
     public Map<String, Object> registryUser(
+            HttpServletRequest request,
         @ApiParam(required = true, value = "版本", defaultValue = "v1") @PathVariable("version") String version,
         @Length(min = 6, max = 20, message = "密码长度为6到20")
         @ApiParam(required = true, value = "密码") @RequestParam("password") String password,
