@@ -12,6 +12,7 @@
         <module>platform-system</module>
         <module>platform-admin-web</module>
         <module>platform-mobile-client</module>
+        <module>platform-redis-cluster</module>
     </modules>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>

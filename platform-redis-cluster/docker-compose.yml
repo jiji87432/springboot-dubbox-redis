@@ -1,0 +1,23 @@
+master:
+  image: redis:3-alpine
+  environment:
+    - REDIS_PORT=6379
+  net: host
+slaves:
+  image: redis:3-alpine
+  environment:
+    - MASTER_PORT=6379
+    - REDIS_PORT=6380
+  command:
+    - slave
+  net: host
+sentinels:
+  image: redis:3-alpine
+  environment:
+    - MASTER_PORT=6379
+    - SENTINEL_PORT=26379
+    - SENTINEL_DOWN_AFTER=5000
+    - SENTINEL_FAILOVER=5000
+  command:
+    - sentinel
+  net: host

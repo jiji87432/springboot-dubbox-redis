@@ -7,6 +7,10 @@
 *.iml
 out
 gen
+<<<<<<< HEAD
+=======
+*.log
+>>>>>>> release/v0.5
 platform-admin-web/target/
 platform-common/platform-common-api/target/
 platform-common/platform-common-redis/target/
@@ -14,8 +18,16 @@ platform-common/platform-common-service/target/
 platform-common/platform-common-upload/target/
 platform-common/platform-common-utils/target/
 platform-common/platform-common-web/target/
+<<<<<<< HEAD
 platform-mobile-client/src/test/resources/
+=======
+>>>>>>> release/v0.5
 platform-mobile-client/target/
 platform-system/platform-system-api/target/
 platform-system/platform-system-provider/target/
 tmp/
+<<<<<<< HEAD
+=======
+*.out
+
+>>>>>>> release/v0.5
