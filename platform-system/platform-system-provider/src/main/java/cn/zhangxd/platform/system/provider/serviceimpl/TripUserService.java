@@ -51,7 +51,7 @@ public class TripUserService extends CrudService<TripUserMapper, TripUser> imple
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void registryUser(String mobile, String password) {
         // 用户已存在不做处理，防止客户端重复提交
         // System.out.println("======" + redisRepository.exists(mobile));
@@ -109,14 +109,12 @@ public class TripUserService extends CrudService<TripUserMapper, TripUser> imple
         // }.start();
         //分布式锁
         try {
+            System.out.println("======并发写入前业务检查start=====");
             DistributedLockUtil.lock(mobile);
             TripUser oldUser = getByMobile(mobile);
-            System.out.println("======并发写入前业务检查start=====");
             if (oldUser != null) {
-                System.out.println("======进入业务检查条件process=====");
                 return;
             }
-            System.out.println("======并发写入业务检查结束end=====");
             //插入用户信息
             TripUser user = new TripUser();
             user.preInsert();
