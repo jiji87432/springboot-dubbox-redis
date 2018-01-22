@@ -9,27 +9,27 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * redisÀÖ¹ÛËøÊµÀı 
+ * redisä¹è§‚é”å®ä¾‹
  * @author linbingwen
  *
  */
 public class OptimisticLockTest {
 
 	public static void main(String[] args) throws InterruptedException {
-		 long starTime=System.currentTimeMillis();
-		
-		 initPrduct();
-		 initClient();
-		 printResult();
-		 
+		long starTime=System.currentTimeMillis();
+
+		initPrduct();
+		initClient();
+		printResult();
+
 		long endTime=System.currentTimeMillis();
 		long Time=endTime-starTime;
-		System.out.println("³ÌĞòÔËĞĞÊ±¼ä£º "+Time+"ms");   
+		System.out.println("ç¨‹åºè¿è¡Œæ—¶é—´ï¼š "+Time+"ms");
 
 	}
-	
+
 	/**
-	 * Êä³ö½á¹û
+	 * è¾“å‡ºç»“æœ
 	 */
 	public static void printResult() {
 		Jedis jedis = RedisUtil.getInstance().getJedis();
@@ -37,99 +37,99 @@ public class OptimisticLockTest {
 
 		int i = 1;
 		for (String value : set) {
-			System.out.println("µÚ" + i++ + "¸öÇÀµ½ÉÌÆ·£¬"+value + " ");
+			System.out.println("ç¬¬" + i++ + "ä¸ªæŠ¢åˆ°å•†å“ï¼Œ"+value + " ");
 		}
 
 		RedisUtil.returnResource(jedis);
 	}
 
 	/*
-	 * ³õÊ¼»¯¹Ë¿Í¿ªÊ¼ÇÀÉÌÆ·
+	 * åˆå§‹åŒ–é¡¾å®¢å¼€å§‹æŠ¢å•†å“
 	 */
 	public static void initClient() {
 		ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-		int clientNum = 10000;// Ä£Äâ¿Í»§ÊıÄ¿
+		int clientNum = 10000;// æ¨¡æ‹Ÿå®¢æˆ·æ•°ç›®
 		for (int i = 0; i < clientNum; i++) {
 			cachedThreadPool.execute(new ClientThread(i));
 		}
 		cachedThreadPool.shutdown();
-		
-		while(true){  
-	            if(cachedThreadPool.isTerminated()){  
-	                System.out.println("ËùÓĞµÄÏß³Ì¶¼½áÊøÁË£¡");  
-	                break;  
-	            }  
-	            try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}    
-	        }  
+
+		while(true){
+			if(cachedThreadPool.isTerminated()){
+				System.out.println("æ‰€æœ‰çš„çº¿ç¨‹éƒ½ç»“æŸäº†ï¼");
+				break;
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
-	 * ³õÊ¼»¯ÉÌÆ·¸öÊı
+	 * åˆå§‹åŒ–å•†å“ä¸ªæ•°
 	 */
 	public static void initPrduct() {
-		int prdNum = 100;// ÉÌÆ·¸öÊı
+		int prdNum = 100;// å•†å“ä¸ªæ•°
 		String key = "prdNum";
-		String clientList = "clientList";// ÇÀ¹ºµ½ÉÌÆ·µÄ¹Ë¿ÍÁĞ±í
+		String clientList = "clientList";// æŠ¢è´­åˆ°å•†å“çš„é¡¾å®¢åˆ—è¡¨
 		Jedis jedis = RedisUtil.getInstance().getJedis();
 
 		if (jedis.exists(key)) {
 			jedis.del(key);
 		}
-		
+
 		if (jedis.exists(clientList)) {
 			jedis.del(clientList);
 		}
 
-		jedis.set(key, String.valueOf(prdNum));// ³õÊ¼»¯
+		jedis.set(key, String.valueOf(prdNum));// åˆå§‹åŒ–
 		RedisUtil.returnResource(jedis);
 	}
 
 }
 
 /**
- * ¹Ë¿ÍÏß³Ì
- * 
+ * é¡¾å®¢çº¿ç¨‹
+ *
  * @author linbingwen
  *
  */
 class ClientThread implements Runnable {
 	Jedis jedis = null;
-	String key = "prdNum";// ÉÌÆ·Ö÷¼ü
-	String clientList = "clientList";//// ÇÀ¹ºµ½ÉÌÆ·µÄ¹Ë¿ÍÁĞ±íÖ÷¼ü
+	String key = "prdNum";// å•†å“ä¸»é”®
+	String clientList = "clientList";//// æŠ¢è´­åˆ°å•†å“çš„é¡¾å®¢åˆ—è¡¨ä¸»é”®
 	String clientName;
 
 	public ClientThread(int num) {
-		clientName = "±àºÅ=" + num;
+		clientName = "ç¼–å·=" + num;
 	}
 
 	public void run() {
 		try {
-			Thread.sleep((int)(Math.random()*5000));// Ëæ»úË¯ÃßÒ»ÏÂ
+			Thread.sleep((int)(Math.random()*5000));// éšæœºç¡çœ ä¸€ä¸‹
 		} catch (InterruptedException e1) {
 		}
 		while (true) {
-			System.out.println("¹Ë¿Í:" + clientName + "¿ªÊ¼ÇÀÉÌÆ·");
+			System.out.println("é¡¾å®¢:" + clientName + "å¼€å§‹æŠ¢å•†å“");
 			jedis = RedisUtil.getInstance().getJedis();
 			try {
 				jedis.watch(key);
-				int prdNum = Integer.parseInt(jedis.get(key));// µ±Ç°ÉÌÆ·¸öÊı
+				int prdNum = Integer.parseInt(jedis.get(key));// å½“å‰å•†å“ä¸ªæ•°
 				if (prdNum > 0) {
 					Transaction transaction = jedis.multi();
 					transaction.set(key, String.valueOf(prdNum - 1));
 					List<Object> result = transaction.exec();
 					if (result == null || result.isEmpty()) {
-						System.out.println("±¯¾çÁË£¬¹Ë¿Í:" + clientName + "Ã»ÓĞÇÀµ½ÉÌÆ·");// ¿ÉÄÜÊÇwatch-key±»Íâ²¿ĞŞ¸Ä£¬»òÕßÊÇÊı¾İ²Ù×÷±»²µ»Ø
+						System.out.println("æ‚²å‰§äº†ï¼Œé¡¾å®¢:" + clientName + "æ²¡æœ‰æŠ¢åˆ°å•†å“");// å¯èƒ½æ˜¯watch-keyè¢«å¤–éƒ¨ä¿®æ”¹ï¼Œæˆ–è€…æ˜¯æ•°æ®æ“ä½œè¢«é©³å›
 					} else {
-						jedis.sadd(clientList, clientName);// ÇÀµ½ÉÌÆ·¼ÇÂ¼Ò»ÏÂ
-						System.out.println("ºÃ¸ßĞË£¬¹Ë¿Í:" + clientName + "ÇÀµ½ÉÌÆ·");
+						jedis.sadd(clientList, clientName);// æŠ¢åˆ°å•†å“è®°å½•ä¸€ä¸‹
+						System.out.println("å¥½é«˜å…´ï¼Œé¡¾å®¢:" + clientName + "æŠ¢åˆ°å•†å“");
 						break;
 					}
 				} else {
-					System.out.println("±¯¾çÁË£¬¿â´æÎª0£¬¹Ë¿Í:" + clientName + "Ã»ÓĞÇÀµ½ÉÌÆ·");
+					System.out.println("æ‚²å‰§äº†ï¼Œåº“å­˜ä¸º0ï¼Œé¡¾å®¢:" + clientName + "æ²¡æœ‰æŠ¢åˆ°å•†å“");
 					break;
 				}
 			} catch (Exception e) {
