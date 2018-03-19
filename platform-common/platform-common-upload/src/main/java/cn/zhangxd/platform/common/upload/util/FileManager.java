@@ -101,7 +101,8 @@ public class FileManager {
                 suffix = trueName.substring(pos + 1);
             }
             String saveFile = id + (StringHelper.isNotEmpty(suffix) ? ("." + suffix) : "");
-            String filePath = folderPath + "/" + saveFile;
+//            String filePath = folderPath + "/" + saveFile;
+            String filePath = "/Users/jiji/logs" + "/" + saveFile;
             ufi.setPath(filePath);
 
             File upFile = ufi.getUpFile();
