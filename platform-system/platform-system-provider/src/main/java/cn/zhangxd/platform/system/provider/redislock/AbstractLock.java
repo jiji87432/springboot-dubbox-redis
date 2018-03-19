@@ -4,23 +4,23 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
 /**
- * ËøµÄ¹Ç¼ÜÊµÏÖ, ÕæÕıµÄ»ñÈ¡ËøµÄ²½ÖèÓÉ×ÓÀàÈ¥ÊµÏÖ.
- * 
+ * é”çš„éª¨æ¶å®ç°, çœŸæ­£çš„è·å–é”çš„æ­¥éª¤ç”±å­ç±»å»å®ç°.
+ *
  *
  */
 public abstract class AbstractLock implements Lock {
 
 	/**
 	 * <pre>
-	 * ÕâÀïĞè²»ĞèÒª±£Ö¤¿É¼ûĞÔÖµµÃÌÖÂÛ, ÒòÎªÊÇ·Ö²¼Ê½µÄËø, 
-	 * 1.Í¬Ò»¸öjvmµÄ¶à¸öÏß³ÌÊ¹ÓÃ²»Í¬µÄËø¶ÔÏóÆäÊµÒ²ÊÇ¿ÉÒÔµÄ, ÕâÖÖÇé¿öÏÂ²»ĞèÒª±£Ö¤¿É¼ûĞÔ 
-	 * 2.Í¬Ò»¸öjvmµÄ¶à¸öÏß³ÌÊ¹ÓÃÍ¬Ò»¸öËø¶ÔÏó, ÄÇ¿É¼ûĞÔ¾Í±ØĞëÒª±£Ö¤ÁË.
+	 * è¿™é‡Œéœ€ä¸éœ€è¦ä¿è¯å¯è§æ€§å€¼å¾—è®¨è®º, å› ä¸ºæ˜¯åˆ†å¸ƒå¼çš„é”,
+	 * 1.åŒä¸€ä¸ªjvmçš„å¤šä¸ªçº¿ç¨‹ä½¿ç”¨ä¸åŒçš„é”å¯¹è±¡å…¶å®ä¹Ÿæ˜¯å¯ä»¥çš„, è¿™ç§æƒ…å†µä¸‹ä¸éœ€è¦ä¿è¯å¯è§æ€§
+	 * 2.åŒä¸€ä¸ªjvmçš„å¤šä¸ªçº¿ç¨‹ä½¿ç”¨åŒä¸€ä¸ªé”å¯¹è±¡, é‚£å¯è§æ€§å°±å¿…é¡»è¦ä¿è¯äº†.
 	 * </pre>
 	 */
 	protected volatile boolean locked;
 
 	/**
-	 * µ±Ç°jvmÄÚ³ÖÓĞ¸ÃËøµÄÏß³Ì(if have one)
+	 * å½“å‰jvmå†…æŒæœ‰è¯¥é”çš„çº¿ç¨‹(if have one)
 	 */
 	private Thread exclusiveOwnerThread;
 
@@ -52,7 +52,7 @@ public abstract class AbstractLock implements Lock {
 	}
 
 	public void unlock() {
-		// TODO ¼ì²éµ±Ç°Ïß³ÌÊÇ·ñ³ÖÓĞËø
+		// TODO æ£€æŸ¥å½“å‰çº¿ç¨‹æ˜¯å¦æŒæœ‰é”
 		if (Thread.currentThread() != getExclusiveOwnerThread()) {
 			throw new IllegalMonitorStateException("current thread does not hold the lock");
 		}
@@ -72,13 +72,13 @@ public abstract class AbstractLock implements Lock {
 	protected abstract void unlock0();
 
 	/**
-	 * ×èÈûÊ½»ñÈ¡ËøµÄÊµÏÖ
-	 * 
+	 * é˜»å¡å¼è·å–é”çš„å®ç°
+	 *
 	 * @param useTimeout
 	 * @param time
 	 * @param unit
 	 * @param interrupt
-	 *            ÊÇ·ñÏìÓ¦ÖĞ¶Ï
+	 *            æ˜¯å¦å“åº”ä¸­æ–­
 	 * @return
 	 * @throws InterruptedException
 	 */
