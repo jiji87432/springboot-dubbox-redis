@@ -68,6 +68,9 @@
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <webmagic.version>0.6.1</webmagic.version>
+        <redisson.version>3.5.4</redisson.version>
+        <guice.version>4.1.0</guice.version>
+        <apollo.version>0.11.0-SNAPSHOT</apollo.version>
     </properties>
 
     <dependencyManagement>
@@ -230,7 +233,17 @@
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson</artifactId>
-                <version>3.5.4</version>
+                <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
