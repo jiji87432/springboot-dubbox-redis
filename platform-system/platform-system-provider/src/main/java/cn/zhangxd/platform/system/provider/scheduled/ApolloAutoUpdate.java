@@ -28,7 +28,7 @@ public class ApolloAutoUpdate {
         System.out.println("==== 定时器测试apollo自动更新 ====,当前时间：" + System.currentTimeMillis());
         System.out.println("==== 定时器测试apollo自动更新Batch ====：" + testJavaConfigBean.getBatch());
         System.out.println("==== 定时器测试apollo自动更新Timeout ====：" + testJavaConfigBean.getTimeout());
-        System.out.println("==== 定时器测试apollo自动更新SomeDate ====：" + testJavaConfigBean.getSomeDate());
+//        System.out.println("==== 定时器测试apollo自动更新SomeDate ====：" + testJavaConfigBean.getSomeDate());
     }
 
 }

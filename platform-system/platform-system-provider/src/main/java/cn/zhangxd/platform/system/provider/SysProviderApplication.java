@@ -1,8 +1,5 @@
 package cn.zhangxd.platform.system.provider;
 
-import com.ctrip.framework.apollo.Config;
-import com.ctrip.framework.apollo.ConfigService;
-import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
@@ -26,7 +23,6 @@ import java.io.IOException;
 @ServletComponentScan
 @SpringBootApplication
 @EnableTransactionManagement //启用事务
-@EnableApolloConfig({"application", "BASE.DUBBO"})
 @ImportResource("classpath:dubbo-provider.xml")
 public class SysProviderApplication {
 
@@ -38,7 +34,6 @@ public class SysProviderApplication {
 
     /**
      * Hello string.
-     *
      *
      * @return the string
      */
@@ -54,10 +49,6 @@ public class SysProviderApplication {
      * @throws IOException the io exception
      */
     public static void main(String[] args) throws IOException {
-        Config config = ConfigService.getAppConfig();
-        System.out.println("=====ConfigService.getAppConfig()对应application.properties=====" + config);
-        Config configTEST1dubbo = ConfigService.getConfig("BASE.dubbo");
-        System.out.println("=====ConfigService.getConfig('BASE.dubbo')对应公共的namespace BASE.dubbo=====" + configTEST1dubbo);
         SpringApplication application = new SpringApplication(SysProviderApplication.class);
         application.setRegisterShutdownHook(false);
         application.setBannerMode(Banner.Mode.OFF);

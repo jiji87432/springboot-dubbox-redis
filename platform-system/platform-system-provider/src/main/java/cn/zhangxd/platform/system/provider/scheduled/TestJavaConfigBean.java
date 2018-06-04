@@ -3,8 +3,6 @@ package cn.zhangxd.platform.system.provider.scheduled;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Date;
-
 /**
  * @author jiji
  */
@@ -14,8 +12,8 @@ public class TestJavaConfigBean {
     @Value("${timeout:100}")
     private int timeout;
     private int batch;
-    @Value("#{new java.text.SimpleDateFormat('${dateFormat}').parse('${dateProperty}')}")
-    private Date someDate;
+//    @Value("#{new java.text.SimpleDateFormat('${dateFormat}').parse('${dateProperty}')}")
+//    private Date someDate;
 
     @Value("${batch:200}")
     public void setBatch(int batch) {
@@ -30,7 +28,7 @@ public class TestJavaConfigBean {
         return batch;
     }
 
-    public Date getSomeDate() {
-        return someDate;
-    }
+//    public Date getSomeDate() {
+//        return someDate;
+//    }
 }

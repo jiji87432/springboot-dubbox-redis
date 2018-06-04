@@ -70,6 +70,8 @@
         <webmagic.version>0.6.1</webmagic.version>
         <redisson.version>3.5.4</redisson.version>
         <guice.version>4.1.0</guice.version>
+        <javassist.version>3.12.1.GA</javassist.version>
+        <guice.version>4.1.0</guice.version>
         <apollo.version>0.11.0-SNAPSHOT</apollo.version>
     </properties>
 
@@ -241,10 +243,20 @@
                 <version>${guice.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ctrip.framework.apollo</groupId>
-                <artifactId>apollo-client</artifactId>
-                <version>${apollo.version}</version>
+                <groupId>javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.ctrip.framework.apollo</groupId>-->
+                <!--<artifactId>apollo-client</artifactId>-->
+                <!--<version>${apollo.version}</version>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 

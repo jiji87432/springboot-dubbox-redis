@@ -2,7 +2,6 @@ package cn.zhangxd.platform.system.provider.beanpostprocessor;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * 针对继承了接口的bean，注入name
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @author lenovo
  * @time 2016年4月21日
  */
-@Configuration
+//@Configuration
 public class NameBeanPostProcessor implements BeanPostProcessor {
     String name;
 
