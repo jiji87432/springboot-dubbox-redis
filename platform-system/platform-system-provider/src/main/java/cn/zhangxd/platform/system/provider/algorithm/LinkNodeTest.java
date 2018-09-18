@@ -19,7 +19,8 @@ public class LinkNodeTest {
         }
         // 调用反转方法
         // head = reverse1(head);
-        head = reverse2(head);
+//        head = reverse2(head);
+        head = reverse(head);
 
         System.out.println("\n**************************");
         // 打印反转后的结果
@@ -33,8 +34,9 @@ public class LinkNodeTest {
      * 遍历，将当前节点的下一个节点缓存后更改当前节点指针
      */
     public static NodeTow reverse2(NodeTow head) {
-        if (head == null)
+        if (head == null) {
             return head;
+        }
         NodeTow pre = head;// 上一结点
         NodeTow cur = head.getNext();// 当前结点
         NodeTow tmp;// 临时结点，用于保存当前结点的指针域（即下一结点）
@@ -50,6 +52,25 @@ public class LinkNodeTest {
         head.setNext(null);
 
         return pre;
+    }
+
+
+    public static NodeTow reverse(NodeTow head) {
+        if (head == null) {
+            return head;
+        }
+
+        NodeTow pre = null;
+        NodeTow next = null;
+
+        while (head != null) {
+            next = head.getNext();
+            head.setNext(pre);
+            pre = head;
+            head = next;
+        }
+        return pre;
+
     }
 }
 

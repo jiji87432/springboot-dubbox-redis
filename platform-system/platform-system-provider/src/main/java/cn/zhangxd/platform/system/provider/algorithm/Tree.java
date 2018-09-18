@@ -114,7 +114,7 @@ public class Tree {
     public static void main(String[] args) {
         Tree tree = new Tree();
         System.out.println("根节点是:" + tree.root);
-        //tree.preOrder(tree.root);
+//        tree.preOrder(tree.root);
         tree.postOrder(tree.root);
         for (Node node : tree.getResult()) {
             System.out.println(node.data);

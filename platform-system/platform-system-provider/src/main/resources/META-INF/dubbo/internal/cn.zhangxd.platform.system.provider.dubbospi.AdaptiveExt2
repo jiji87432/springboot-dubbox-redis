@@ -1,0 +1,3 @@
+dubbo=cn.zhangxd.platform.system.provider.dubbospi.DubboAdaptiveExt2
+cloud=cn.zhangxd.platform.system.provider.dubbospi.SpringCloudAdaptiveExt2
+thrift=cn.zhangxd.platform.system.provider.dubbospi.ThriftAdaptiveExt2

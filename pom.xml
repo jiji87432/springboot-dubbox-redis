@@ -252,11 +252,11 @@
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>com.ctrip.framework.apollo</groupId>-->
-                <!--<artifactId>apollo-client</artifactId>-->
-                <!--<version>${apollo.version}</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

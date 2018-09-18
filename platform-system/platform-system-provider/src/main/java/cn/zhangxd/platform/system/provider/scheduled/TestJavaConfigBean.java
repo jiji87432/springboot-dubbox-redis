@@ -11,24 +11,9 @@ public class TestJavaConfigBean {
 
     @Value("${timeout:100}")
     private int timeout;
-    private int batch;
-//    @Value("#{new java.text.SimpleDateFormat('${dateFormat}').parse('${dateProperty}')}")
-//    private Date someDate;
-
     @Value("${batch:200}")
-    public void setBatch(int batch) {
-        this.batch = batch;
-    }
+    private int batch;
+    @Value("${staticKey:jiji}")
+    private static String staticKey;
 
-    public int getTimeout() {
-        return timeout;
-    }
-
-    public int getBatch() {
-        return batch;
-    }
-
-//    public Date getSomeDate() {
-//        return someDate;
-//    }
 }
