@@ -13,6 +13,7 @@
         <module>platform-admin-web</module>
         <module>platform-mobile-client</module>
         <module>platform-redis-cluster</module>
+        <module>platform-learning</module>
     </modules>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>

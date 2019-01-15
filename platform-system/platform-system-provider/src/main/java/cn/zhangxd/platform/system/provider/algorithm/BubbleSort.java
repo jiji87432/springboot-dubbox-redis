@@ -5,7 +5,7 @@ package cn.zhangxd.platform.system.provider.algorithm;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-        int[] arr = {6, 3, 8, 2, 3, 4, 5, 6, 7};
+        int[] arr = {9,8,6,5,4};
 //        bubbleSortOne(arr);
 //        bubbleSortTow(arr);
         bubbleSortThree(arr);
