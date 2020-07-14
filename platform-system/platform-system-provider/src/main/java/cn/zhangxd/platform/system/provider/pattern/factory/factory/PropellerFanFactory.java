@@ -1,6 +1,5 @@
 package cn.zhangxd.platform.system.provider.pattern.factory.factory;
 
-import cn.zhangxd.platform.system.provider.pattern.factory.simple.ExhaustFan;
 import cn.zhangxd.platform.system.provider.pattern.factory.simple.IFan;
 
 /**
@@ -10,6 +9,6 @@ import cn.zhangxd.platform.system.provider.pattern.factory.simple.IFan;
 public class PropellerFanFactory implements IFanFactory {
     @Override
     public IFan createFan() {
-        return new ExhaustFan();
+        return new PropellerFan();
     }
 }

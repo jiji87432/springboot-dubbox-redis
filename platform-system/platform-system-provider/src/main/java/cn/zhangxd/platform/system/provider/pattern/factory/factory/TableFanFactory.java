@@ -1,7 +1,7 @@
 package cn.zhangxd.platform.system.provider.pattern.factory.factory;
 
-import cn.zhangxd.platform.system.provider.pattern.factory.simple.CeilingFan;
 import cn.zhangxd.platform.system.provider.pattern.factory.simple.IFan;
+import cn.zhangxd.platform.system.provider.pattern.factory.simple.TableFan;
 
 /**
  * @author zhangyongji
@@ -10,6 +10,6 @@ import cn.zhangxd.platform.system.provider.pattern.factory.simple.IFan;
 public class TableFanFactory implements IFanFactory {
     @Override
     public IFan createFan() {
-        return new CeilingFan();
+        return new TableFan();
     }
 }

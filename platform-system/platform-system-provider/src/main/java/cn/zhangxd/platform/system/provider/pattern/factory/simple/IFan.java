@@ -1,7 +1,8 @@
-package cn.zhangxd.platform.system.provider.pattern.factory;
+package cn.zhangxd.platform.system.provider.pattern.factory.simple;
 
-interface IFan
-{
+public interface IFan {
+
     void SwitchOn();
+
     void SwitchOff();
 }

@@ -92,7 +92,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {10, 7, 2, 4, 7, 62, 3, 4, 2, 1, 8, 9, 19};
+        int[] arr = {6, 1, 2, 7, 9, 3, 4, 5, 10, 8};
         quickSort(arr, 0, arr.length - 1);
 //        quickTow(arr, 0, arr.length - 1);
         for (int i = 0; i < arr.length; i++) {
